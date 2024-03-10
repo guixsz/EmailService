@@ -4,7 +4,7 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.model.*;
 import com.guilherme.emailservice.adapters.EmailSenderGateway;
-import com.guilherme.emailservice.core.excpetions.EmailServiceExcpetion;
+import com.guilherme.emailservice.core.excpetions.EmailServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class SesEmailSender implements EmailSenderGateway {
         try {
             this.amazonSimpleEmailService.sendEmail(request);
         }  catch (AmazonServiceException exception){
-            throw  new EmailServiceExcpetion("Falha ao enviar o e-mail", exception);
+            throw  new EmailServiceException("Falha ao enviar o e-mail", exception);
         }
     }
 }
